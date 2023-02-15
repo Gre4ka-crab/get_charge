@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppBarButton extends StatelessWidget {
   final Widget icon;
@@ -17,8 +18,8 @@ class AppBarButton extends StatelessWidget {
       onTapDown: onTapDown,
       onTapUp: onTapUp,
       child: Container(
-        width: 38,
-        height: 38,
+        width: 38.w,
+        height: 38.w,
         margin: margin ?? const EdgeInsets.all(0),
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(15)),

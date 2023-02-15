@@ -1,9 +1,9 @@
+import 'package:eticon_api/eticon_api.dart';
 import 'package:flutter/material.dart';
-import 'package:get_charge/services/AuthService.dart';
 
-import '../../Heplers.dart';
+import '../../heplers.dart';
 import '../buttons/GradientButton.dart';
-import '../modal/Auth.dart';
+import '../modal/auth.dart';
 
 class NoSelectedPowerBank extends StatelessWidget {
   const NoSelectedPowerBank({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class NoSelectedPowerBank extends StatelessWidget {
         Row(),
         GradientButton(
           callback: () {
-            if (AuthService.token != null) {
+            if (Api.token != null) {
               Helpers.openModal(context, const Auth());
             } else {
               Navigator.pushNamed(context, '/qrScan');

@@ -1,31 +1,21 @@
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:get_charge/config/pj_const.dart' as consts;
-import 'package:get_charge/data/models/User/Token.dart';
+import 'package:eticon_api/eticon_api.dart';
 
 abstract class LocalTokenDataSources{
-  Future<Token> getTokenInLocalStorage();
-  Future<Token> setTokenInLocalStorage(Token token);
+  String? getTokenInLocalStorage();
+  void setTokenInLocalStorage(String token);
 }
 
 
-class LocalTokenDataSourcesTml implements LocalTokenDataSources{
-  static FlutterSecureStorage storage = const FlutterSecureStorage();
+class LocalTokenDataSourcesTml implements LocalTokenDataSources {
 
   @override
-  Future<Token> getTokenInLocalStorage() async {
-    String? storageToken = await storage.read(key: consts.token);
-
-    if(storageToken != null){
-      return Token(tokenString: tokenString, lifeTime: lifeTime)!;
-    }else{
-
-    }
+  String? getTokenInLocalStorage() {
+    return Api.token;
   }
 
   @override
-  Future<Token> setTokenInLocalStorage(String token) {
-    // TODO: implement setTokenInLocalStorage
-    throw UnimplementedError();
+  void setTokenInLocalStorage(String token) {
+    Api.setToken(token);
   }
 
 }
