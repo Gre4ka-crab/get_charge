@@ -3,7 +3,7 @@ import 'package:get_charge/presentation/widget/buttons/GradientButton.dart';
 import 'package:get_charge/presentation/widget/tabs/bonus/promo_code_link.dart';
 import 'package:get_charge/presentation/widget/tabs/bonus/qr_promo_code.dart';
 
-import '../widget/menu/DrawerMenu.dart';
+import '../widget/main_menu.dart';
 import '../widget/tabs/bonus/promo_code.dart';
 
 class _PlaceholderUser {
@@ -33,8 +33,7 @@ class BonusScreen extends StatelessWidget {
                   Navigator.of(context).popUntil((route) => route.isFirst),
             )],
           ),
-          drawer:
-              DrawerMenu.createMenu(context, DrawerMenu.defaultItemsList),
+          drawer: const MainMenu(),
           body: Column(
             children: [
               Container(

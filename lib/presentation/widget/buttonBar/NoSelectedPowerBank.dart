@@ -11,9 +11,9 @@ class NoSelectedPowerBank extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(),
         GradientButton(
           callback: () {
             if (Api.token != null) {

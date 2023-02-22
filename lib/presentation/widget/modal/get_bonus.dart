@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_charge/presentation/widget/buttons/GradientButton.dart';
 
 import '../inputs/DefaultInput.dart';
-import '../menu/DrawerMenu.dart';
+import '../main_menu.dart';
 
 class GetBonus extends StatelessWidget {
   const GetBonus({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class GetBonus extends StatelessWidget {
           )
         ],
       ),
-      drawer: DrawerMenu.createMenu(context, DrawerMenu.defaultItemsList),
+      drawer: const MainMenu(),
       body: Center(
         child: Container(
           padding: const EdgeInsets.only(left: 30, right: 30),

@@ -5,7 +5,7 @@ import 'package:get_charge/presentation/heplers.dart';
 import 'package:get_charge/presentation/widget/main_map.dart';
 import 'package:get_charge/presentation/widget/buttonBar/SelectedPowerBank.dart';
 import 'package:get_charge/presentation/widget/buttons/appBarButton.dart';
-import 'package:get_charge/presentation/widget/menu/DrawerMenu.dart';
+import 'package:get_charge/presentation/widget/main_menu.dart';
 import 'package:get_charge/presentation/widget/modal/push_query.dart';
 import '../widget/buttonBar/NoSelectedPowerBank.dart';
 import '../widget/dropLists/FiltersList.dart';
@@ -57,49 +57,46 @@ class _MapScreenState extends State<MapScreen> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       key: _scaffoldKey,
-      drawer: DrawerMenu.createMenu(context, DrawerMenu.defaultItemsList),
+      drawer: const MainMenu(),
       body: SafeArea(
         child: Stack(
+          alignment: Alignment.bottomCenter,
           children: [
             const MainMap(),
-            Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(left: 30.w, right: 30.w, top: 30.h),
-                  child: Wrap(
+            Padding(
+              padding: EdgeInsets.only(left: 30.w, right: 30.w, top: 30.h),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          AppBarButton(
-                              icon: Icon(Icons.menu, color: Color.fromARGB(255, 0, 158, 240)),
-                              onPressed: () => _scaffoldKey.currentState?.openDrawer()),
-                          AppBarButton(
-                              icon: SvgPicture.asset('images/settings.svg'),
-                              onPressed: () {
-                                _displayDialog(context);
-                              }),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          ValueListenableBuilder(
-                            valueListenable: _isVisibleStar,
-                            builder: (BuildContext context, bool starVisible, Widget? child) {
-                              return starVisible ? child! : const Padding(padding: EdgeInsets.zero);
-                            },
-                            child: AppBarButton(
-                                margin: EdgeInsets.only(top: 6.h),
-                                icon: SvgPicture.asset('images/goldStar.svg'),
-                                onPressed: () {}),
-                          ),
-                        ],
-                      )
+                      AppBarButton(
+                          icon: const Icon(Icons.menu, color: Color.fromARGB(255, 0, 158, 240)),
+                          onPressed: () => _scaffoldKey.currentState?.openDrawer()),
+                      AppBarButton(
+                          icon: SvgPicture.asset('images/settings.svg'),
+                          onPressed: () {
+                            _displayDialog(context);
+                          }),
                     ],
                   ),
-                ),
-              ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ValueListenableBuilder(
+                        valueListenable: _isVisibleStar,
+                        builder: (BuildContext context, bool starVisible, Widget? child) {
+                          return starVisible ? child! : const Padding(padding: EdgeInsets.zero);
+                        },
+                        child: AppBarButton(
+                            margin: EdgeInsets.only(top: 6.h),
+                            icon: SvgPicture.asset('images/goldStar.svg'),
+                            onPressed: () {}),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
             selectedPowerBank ? const SelectedPowerBank() : const NoSelectedPowerBank()
           ],

@@ -7,7 +7,7 @@ import 'package:get_charge/presentation/screens/pay_ments_screen.dart';
 import 'package:get_charge/presentation/widget/buttons/GradientButton.dart';
 import 'package:get_charge/presentation/widget/buttons/LineButton.dart';
 import 'package:get_charge/presentation/widget/loading/Loading.dart';
-import '../widget/menu/DrawerMenu.dart';
+import '../widget/main_menu.dart';
 
 class UserProfileScreen extends StatelessWidget {
   const UserProfileScreen({Key? key}) : super(key: key);
@@ -43,7 +43,7 @@ class UserProfileScreen extends StatelessWidget {
               Navigator.of(context).popUntil((route) => route.isFirst),
         ),
       ),
-      endDrawer: DrawerMenu.createMenu(context, DrawerMenu.defaultItemsList),
+      endDrawer: const MainMenu(),
       body: Container(
         margin: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
         child: FutureBuilder<ProfileView?>(

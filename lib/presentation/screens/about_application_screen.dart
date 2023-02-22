@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_charge/presentation/widget/buttonBar/SocialBar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../widget/menu/DrawerMenu.dart';
+import '../widget/main_menu.dart';
 
 class AboutApplicationScreen extends StatelessWidget {
   const AboutApplicationScreen({Key? key}) : super(key: key);
@@ -35,7 +35,7 @@ class AboutApplicationScreen extends StatelessWidget {
               Navigator.of(context).popUntil((route) => route.isFirst),
         ),
       ),
-      endDrawer: DrawerMenu.createMenu(context, DrawerMenu.defaultItemsList),
+      endDrawer: const MainMenu(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

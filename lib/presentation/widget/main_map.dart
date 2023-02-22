@@ -16,12 +16,12 @@ class MainMap extends StatefulWidget {
 }
 
 class _MainMapState extends State<MainMap> {
-  final double zoomMove = 1;
-  final double initZoom = 19;
+  // final double zoomMove = 1;
+  static const double initZoom = 19;
   bool userStartedUsing = false;
   Timer? zoomTimer;
   GoogleMapController? _mapController;
-  Set<Marker> markers = {};
+  final Set<Marker> markers = {};
 
   _zoomMap(bool decrease) async {
     _mapController?.animateCamera(
