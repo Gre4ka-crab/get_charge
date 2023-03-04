@@ -14,7 +14,7 @@ class ServerFailure extends Failure {
 
   @override
   String toString() {
-    return 'ServerFailure{errorMessage: $errorMessage}';
+    return errorMessage.toString();
   }
 }
 

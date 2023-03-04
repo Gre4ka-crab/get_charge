@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_charge/presentation/block/auth/auth_cubit.dart';
 import 'package:get_charge/presentation/heplers.dart';
+import 'package:get_charge/presentation/screens/loading_screen.dart';
 import 'package:get_charge/presentation/widget/main_map.dart';
 import 'package:get_charge/presentation/widget/buttonBar/SelectedPowerBank.dart';
 import 'package:get_charge/presentation/widget/buttons/appBarButton.dart';
@@ -54,55 +57,66 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      key: _scaffoldKey,
-      drawer: const MainMenu(),
-      body: SafeArea(
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            const MainMap(),
-            Padding(
-              padding: EdgeInsets.only(left: 30.w, right: 30.w, top: 30.h),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AppBarButton(
-                          icon: const Icon(Icons.menu, color: Color.fromARGB(255, 0, 158, 240)),
-                          onPressed: () => _scaffoldKey.currentState?.openDrawer()),
-                      AppBarButton(
-                          icon: SvgPicture.asset('images/settings.svg'),
-                          onPressed: () {
-                            _displayDialog(context);
-                          }),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      ValueListenableBuilder(
-                        valueListenable: _isVisibleStar,
-                        builder: (BuildContext context, bool starVisible, Widget? child) {
-                          return starVisible ? child! : const Padding(padding: EdgeInsets.zero);
-                        },
-                        child: AppBarButton(
-                            margin: EdgeInsets.only(top: 6.h),
-                            icon: SvgPicture.asset('images/goldStar.svg'),
-                            onPressed: () {}),
-                      ),
-                    ],
-                  )
-                ],
+    return BlocBuilder<AuthCubit, AuthState>(builder: (BuildContext context, state) {
+      if (state is AuthLading) {
+        return const LoadingScreen();
+      }
+
+      if (state is AuthInitial) {
+        context.read<AuthCubit>().logInCheck();
+      }
+
+      return Scaffold(
+        backgroundColor: Colors.transparent,
+        key: _scaffoldKey,
+        drawer: const MainMenu(),
+        body: SafeArea(
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              const MainMap(),
+              Padding(
+                padding: EdgeInsets.only(left: 30.w, right: 30.w, top: 30.h),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        AppBarButton(
+                            icon: const Icon(Icons.menu, color: Color.fromARGB(255, 0, 158, 240)),
+                            onPressed: () => _scaffoldKey.currentState?.openDrawer()),
+                        AppBarButton(
+                            icon: SvgPicture.asset('images/settings.svg'),
+                            onPressed: () {
+                              _displayDialog(context);
+                            }),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ValueListenableBuilder(
+                          valueListenable: _isVisibleStar,
+                          builder: (BuildContext context, bool starVisible, Widget? child) {
+                            return starVisible ? child! : const Padding(padding: EdgeInsets.zero);
+                          },
+                          child: AppBarButton(
+                              margin: EdgeInsets.only(top: 6.h), icon: SvgPicture.asset('images/goldStar.svg'), onPressed: () {}),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
-            ),
-            selectedPowerBank ? const SelectedPowerBank() : const NoSelectedPowerBank()
-          ],
+              // TODO Проверка авторизации
+              selectedPowerBank
+                  ? const SelectedPowerBank()
+                  : NoSelectedPowerBank(isLogIn: state is AuthLoaded ? state.isLogIn : false)
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   @override

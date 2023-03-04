@@ -1,7 +1,7 @@
 import 'package:get_charge/domain/entities/order_entity.dart';
 
-class OrderModel extends OrderEntity {
-  OrderModel({
+class OrderDetailModel extends OrderDetailEntity {
+  OrderDetailModel({
     required super.id,
     required super.startTime,
     required super.endTime,

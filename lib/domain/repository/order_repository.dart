@@ -1,6 +1,6 @@
-import 'package:get_charge/data/models/User/OrderView.dart';
+import 'package:get_charge/data/models/order/order_view_model.dart';
 
 abstract class OrderRepository{
-  Future<List<OrderView>?> getOrders();
-  Future<OrderView?> getOrder(String orderId);
+  Future<List<OrderViewModel>?> getOrders();
+  Future<OrderViewModel?> getOrder(String orderId);
 }

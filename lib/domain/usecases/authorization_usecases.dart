@@ -14,9 +14,9 @@ class RefreshToken implements UseCase<TokenEmpty, ParamsRefreshToken> {
 
   @override
   Future<Either<Failure, TokenEmpty>> call(ParamsRefreshToken params) async {
-    Either<Failure, TokenEmpty> result = await tokenRepository.getToken(login: params.login, code: params.code);
+    Either<Failure, TokenEmpty> result = await tokenRepository.refreshToken(login: params.login, code: params.code);
 
-    result.fold((l) => null, (r) => tokenRepository.setToken(r.accessToken));
+    result.fold((error) => null, (result) => tokenRepository.setToken(result));
 
     return result;
   }
@@ -37,4 +37,25 @@ class ParamsRefreshToken extends Equatable {
   }
 }
 
+class GetToken implements UseCase<TokenEmpty?, NoParams>{
+  TokenRepository tokenRepository;
+
+  GetToken({required this.tokenRepository});
+
+  @override
+  Future<Either<Failure, TokenEmpty?>> call(NoParams params) async {
+    return tokenRepository.getLocalToken();
+  }
+
+}
+
+class CallUser implements UseCase<TokenEmpty, NoParams>{
+
+  @override
+  Future<Either<Failure, TokenEmpty>> call(NoParams params) {
+    // TODO: implement call
+    throw UnimplementedError();
+  }
+
+}
 

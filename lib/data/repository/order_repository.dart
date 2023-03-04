@@ -1,16 +1,16 @@
-import 'package:get_charge/data/models/User/OrderView.dart';
+import 'package:get_charge/data/models/order/order_view_model.dart';
 import 'package:get_charge/domain/repository/order_repository.dart';
 
 class OrderRepositoryTml implements OrderRepository{
 
   @override
-  Future<OrderView?> getOrder(String orderId) {
+  Future<OrderViewModel?> getOrder(String orderId) {
     // TODO: implement getOrder
     throw UnimplementedError();
   }
 
   @override
-  Future<List<OrderView>?> getOrders() {
+  Future<List<OrderViewModel>?> getOrders() {
     // TODO: implement getOrders
     throw UnimplementedError();
   }

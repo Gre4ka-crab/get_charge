@@ -3,30 +3,28 @@ import 'package:get_charge/domain/entities/token_entity.dart';
 class TokenModel extends TokenEmpty {
 
   TokenModel({
-    required super.accessToken,
-    required super.expiresIn,
-    required super.tokenType,
-    required super.scope,
+    required super.token,
+    super.tokenExpireDateTime,
+    required super.refreshToken,
   });
 
   factory TokenModel.fromJson(Map<String, dynamic> json) => TokenModel(
-        accessToken: json['access_token'] ?? '',
-        expiresIn: Duration(seconds: (json['expires_in']?.toInt()) ?? 0),
-        tokenType: json['token_type'] ?? '',
-        scope: json['scope'] ?? '',
-      );
+    token: json['token'] ?? '',
+    tokenExpireDateTime: DateTime.parse(json['tokenExpireDateTime']),
+    refreshToken: json['refreshToken'] ?? '',
+  );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-    'access_token': accessToken,
-    'expires_in': expiresIn.inSeconds,
-    'token_type': tokenType,
-    'scope': scope,
+    'token': token,
+    'tokenExpireDateTime': tokenExpireDateTime?.toIso8601String(),
+    'refreshToken': refreshToken,
   };
 
-  List<Object> get props => [accessToken];
+  List<Object> get props => [token];
 
   @override
   String toString() {
     return 'TokenModel{${toJson()}';
   }
 }
+

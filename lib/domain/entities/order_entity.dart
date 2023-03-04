@@ -1,7 +1,7 @@
 import 'package:get_charge/data/models/PowerBank.dart';
 import 'package:get_charge/data/models/Terminal.dart';
 
-class OrderEntity {
+class OrderDetailEntity {
   final String id;
   final DateTime startTime;
   final DateTime? endTime;
@@ -18,7 +18,7 @@ class OrderEntity {
   final Terminal? endTerminal;
   final PowerBank powerBand;
 
-  OrderEntity({
+  OrderDetailEntity({
     required this.id,
     required this.startTime,
     required this.endTime,

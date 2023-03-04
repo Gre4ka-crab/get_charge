@@ -41,7 +41,7 @@ class PayMentsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  'Текщий способ оплаты',
+                  'Текущий способ оплаты',
                   style: TextStyle(color: Color.fromARGB(255, 134, 135, 137)),
                 ),
                 TextButton(
@@ -135,7 +135,7 @@ class PayMentsScreen extends StatelessWidget {
                     GradientButton(
                         callback: () {},
                         padding: const EdgeInsets.only(top: 60, bottom: 30),
-                        buttonLabel: 'Изминить')
+                        buttonLabel: 'Изменить')
                   ],
                 ))
               ],

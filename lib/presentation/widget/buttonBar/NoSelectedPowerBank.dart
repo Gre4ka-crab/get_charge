@@ -1,4 +1,3 @@
-import 'package:eticon_api/eticon_api.dart';
 import 'package:flutter/material.dart';
 
 import '../../heplers.dart';
@@ -6,7 +5,8 @@ import '../buttons/GradientButton.dart';
 import '../modal/auth.dart';
 
 class NoSelectedPowerBank extends StatelessWidget {
-  const NoSelectedPowerBank({Key? key}) : super(key: key);
+  final bool isLogIn;
+  const NoSelectedPowerBank({Key? key, required this.isLogIn}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +16,10 @@ class NoSelectedPowerBank extends StatelessWidget {
       children: [
         GradientButton(
           callback: () {
-            if (Api.token != null) {
-              Helpers.openModal(context, const Auth());
-            } else {
+            if (isLogIn) {
               Navigator.pushNamed(context, '/qrScan');
+            } else {
+              Helpers.openModal(context, const Auth());
             }
           },
           buttonLabel: 'Взять заряд',

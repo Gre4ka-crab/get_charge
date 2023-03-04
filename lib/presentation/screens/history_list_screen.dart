@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_charge/presentation/heplers.dart';
-import 'package:get_charge/data/models/User/OrderView.dart';
+import 'package:get_charge/data/models/order/order_view_model.dart';
 import 'package:get_charge/presentation/widget/loading/Loading.dart';
 import 'package:intl/intl.dart';
 import 'lease_detail_screen.dart';
@@ -29,9 +29,9 @@ class HistoryListScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.only(bottom: 30, left: 30, right: 30),
-        child: FutureBuilder<List<OrderView>?>(
+        child: FutureBuilder<List<OrderViewModel>?>(
           // future: Order.getOrders(),
-          builder: (BuildContext _, AsyncSnapshot<List<OrderView>?> snapshot) {
+          builder: (BuildContext _, AsyncSnapshot<List<OrderViewModel>?> snapshot) {
             if (!snapshot.hasData) {
               return const Loading();
             }
