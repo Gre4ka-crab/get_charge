@@ -1,39 +1,30 @@
-import 'package:get_charge/data/models/PowerBank.dart';
-import 'package:get_charge/data/models/Terminal.dart';
+import 'package:get_charge/domain/entities/power_bank_entity.dart';
+import 'package:get_charge/domain/entities/tariff_entity.dart';
+import 'package:get_charge/domain/entities/terminal_entity.dart';
 
-class OrderDetailEntity {
-  final String id;
-  final DateTime startTime;
+class OrderEntity {
+  final String? id;
+  final DateTime? startTime;
   final DateTime? endTime;
-  final String userId;
-  final String beginTerminalId;
-  final String? endTerminalId;
-  final String tariffId;
-  final int paymentMethodId;
-  final String powerBandId;
-  final int statusId;
-  final int number;
+  final TariffEntity? tariff;
+  final PowerBankEntity? powerBank;
+  final int? statusId;
+  final int? number;
   final int? price;
-  final Terminal? beginTerminal;
-  final Terminal? endTerminal;
-  final PowerBank powerBand;
+  final TerminalEntity? beginTerminal;
+  final TerminalEntity? endTerminal;
 
-  OrderDetailEntity({
-    required this.id,
-    required this.startTime,
-    required this.endTime,
-    required this.userId,
-    required this.beginTerminalId,
-    required this.endTerminalId,
-    required this.tariffId,
-    required this.paymentMethodId,
-    required this.powerBandId,
-    required this.statusId,
-    required this.number,
-    required this.price,
-    required this.beginTerminal,
-    required this.endTerminal,
-    required this.powerBand
+  OrderEntity({
+    this.id,
+    this.startTime,
+    this.endTime,
+    this.statusId,
+    this.number,
+    this.price,
+    this.beginTerminal,
+    this.endTerminal,
+    this.powerBank,
+    this.tariff
   });
 
 }

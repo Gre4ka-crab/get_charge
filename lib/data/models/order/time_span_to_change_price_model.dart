@@ -67,4 +67,13 @@ class TimeSpanToChangePriceModel {
     'totalMinutes' : totalMinutes,
     'totalSeconds' : totalSeconds
   };
+
+  Duration toDuration() => Duration(
+    days: days ?? 0,
+    hours: hours ?? 0,
+    milliseconds: milliseconds ?? 0,
+    microseconds: microseconds ?? 0,
+    minutes: minutes ?? 0,
+    seconds: seconds ?? 0,
+  );
 }

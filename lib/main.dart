@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_charge/core/api/api.dart';
 import 'package:get_charge/domain/usecases/authorization_usecases.dart';
+import 'package:get_charge/domain/usecases/order_usecases.dart';
 import 'package:get_charge/domain/usecases/profile_usecases.dart';
 import 'package:get_charge/presentation/block/auth/auth_cubit.dart';
+import 'package:get_charge/presentation/block/order/order_cubit.dart';
+import 'package:get_charge/presentation/block/orders%20history/orders_history_cubit.dart';
 import 'package:get_charge/presentation/block/profile/profile_cubit.dart';
 import 'package:get_charge/presentation/screens/auth_screen.dart';
 import 'package:get_charge/presentation/screens/bonus_screen.dart';
@@ -47,6 +50,12 @@ void main() async {
               ),
               BlocProvider<ProfileCubit>(
                 create: (_) => ProfileCubit(getProfile: sl<GetProfile>()),
+              ),
+              BlocProvider<OrdersHistoryCubit>(
+                create: (_) => OrdersHistoryCubit(getOrders: sl<GetOrders>()),
+              ),
+              BlocProvider<OrderCubit>(
+                create: (_) => OrderCubit(getOrder: sl<GetOrder>()),
               ),
             ],
             child: MaterialApp(

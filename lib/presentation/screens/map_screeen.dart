@@ -58,7 +58,7 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(builder: (BuildContext context, state) {
-      if (state is AuthLading) {
+      if (state is AuthLoading) {
         return const LoadingScreen();
       }
 

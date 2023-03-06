@@ -26,7 +26,7 @@ class UserEntity {
   final List<UserClaimEntity>? userClaims;
   final List<BankCard>? bankCards;
   final List<dynamic>? inverseReferralUser;
-  final List<OrderDetailEntity>? orders;
+  final List<OrderEntity>? orders;
   final List<VerifyCodeEntity>? verifyCodes;
 
   UserEntity({

@@ -62,7 +62,7 @@ class AuthNumberConfirm extends StatelessWidget {
       },
       builder: (BuildContext context, state) {
 
-        if (state is AuthLading) {
+        if (state is AuthLoading) {
           return const LoadingScreen();
         }
 

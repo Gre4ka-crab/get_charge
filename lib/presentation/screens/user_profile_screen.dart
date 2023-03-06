@@ -58,7 +58,7 @@ class UserProfileScreen extends StatelessWidget {
           if (state is ProfileLoaded) {
             emailText.text = state.profileEntity.email ?? '';
             bottom.value = state.profileEntity.phone;
- 
+
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

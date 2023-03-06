@@ -38,8 +38,9 @@ class Api {
     return _api ??= Api._init();
   }
 
-  static Future<void> writeLocalStorageToken(TokenStorageModel token) async {
-    storage.write(key: storageKey, value: jsonEncode(token.toJson()));
+  static Future<void> writeLocalStorageToken(TokenStorageModel newToken) async {
+    token = token;
+    storage.write(key: storageKey, value: jsonEncode(newToken.toJson()));
   }
 
   static Future<void> _readLocalStorageToken() async {
