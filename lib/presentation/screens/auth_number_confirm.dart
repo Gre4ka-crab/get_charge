@@ -55,13 +55,12 @@ class AuthNumberConfirm extends StatelessWidget {
     );
 
     return BlocConsumer<AuthCubit, AuthState>(
-      listener: (BuildContext context, state){
+      listener: (BuildContext context, state) {
         if (state is AuthLoaded) {
-          if(state.isLogIn) Navigator.pushReplacementNamed(context, '/');
+          if (state.isLogIn) Navigator.pushReplacementNamed(context, '/');
         }
       },
       builder: (BuildContext context, state) {
-
         if (state is AuthLoading) {
           return const LoadingScreen();
         }
@@ -133,10 +132,12 @@ class AuthNumberConfirm extends StatelessWidget {
                   validator: (s) {
                     if (s != null && s.length >= 4) {
                       context.read<AuthCubit>().logIn(
+                            context,
                             login: '$countryCod${phone.replaceAll(RegExp(r'[\),\s,\(,-]+'), '')}',
                             code: '123',
                           );
                     }
+                    return null;
                   },
                   autofocus: true,
                   pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,

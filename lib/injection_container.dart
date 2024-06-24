@@ -24,7 +24,12 @@ final sl = GetIt.instance;
 Future<void> init() async {
   // BLoC / Cubit
   sl.registerFactory(() => AuthCubit(getToken: sl(), refreshToken: sl()));
-  sl.registerFactory(() => ProfileCubit(getProfile: sl()));
+  sl.registerFactory(() => ProfileCubit(
+        getProfileUseCase: sl(),
+        changeEmailUseCase: sl(),
+        logOutUseCase: sl(),
+        removeAccountUseCase: sl(),
+      ));
   sl.registerFactory(() => OrderCubit(getOrder: sl()));
   sl.registerFactory(() => OrdersHistoryCubit(getOrders: sl()));
 
@@ -33,28 +38,27 @@ Future<void> init() async {
   sl.registerLazySingleton(() => RefreshToken(tokenRepository: sl()));
 
   sl.registerLazySingleton(() => GetProfile(sl()));
+  sl.registerLazySingleton(() => ChangeEmail(sl()));
+  sl.registerLazySingleton(() => RemoveAccount(sl()));
+  sl.registerLazySingleton(() => LogOut(sl()));
 
   sl.registerLazySingleton(() => GetOrders(orderRepository: sl()));
   sl.registerLazySingleton(() => GetOrder(orderRepository: sl()));
 
-
   // Repository
-  sl.registerLazySingleton<TokenRepository>(
-    () => TokenRepositoryImpl(remoteTokenDataSources: sl(), localTokenDataSources: sl(), networkInfo: sl())
-  );
+  sl.registerLazySingleton<TokenRepository>(() => TokenRepositoryImpl(
+        remoteTokenDataSources: sl(),
+        localTokenDataSources: sl(),
+        networkInfo: sl(),
+      ));
 
-  sl.registerLazySingleton<ProfileRepository>(
-          () => ProfileRepositoryImpl(profileDataSources: sl(), networkInfo: sl())
-  );
+  sl.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl(profileDataSources: sl(), networkInfo: sl()));
 
-  sl.registerLazySingleton<OrderRepository>(
-          () => OrderRepositoryTmpl(remoteOrderDataSources: sl(), networkInfo: sl())
-  );
+  sl.registerLazySingleton<OrderRepository>(() => OrderRepositoryTmpl(remoteOrderDataSources: sl(), networkInfo: sl()));
 
   // Data Source
   sl.registerLazySingleton<RemoteTokenDataSources>(() => RemoteTokenDataSourcesImpl());
   sl.registerLazySingleton<LocalTokenDataSources>(() => LocalTokenDataSourcesImpl());
-
 
   sl.registerLazySingleton<RemoteProfileDataSources>(() => RemoteProfileDataSourcesImpl());
 

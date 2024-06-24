@@ -38,9 +38,13 @@ class Api {
     return _api ??= Api._init();
   }
 
-  static Future<void> writeLocalStorageToken(TokenStorageModel newToken) async {
-    token = token;
-    storage.write(key: storageKey, value: jsonEncode(newToken.toJson()));
+  static Future<void> writeLocalStorageToken(TokenStorageModel? newToken) async {
+    token = newToken;
+    if(newToken == null){
+      storage.delete(key: storageKey);
+    }else{
+      storage.write(key: storageKey, value: jsonEncode(newToken.toJson()));
+    }
   }
 
   static Future<void> _readLocalStorageToken() async {
@@ -60,12 +64,12 @@ class Api {
     }
   }
 
-  Future<Response> post({required String query, Map<String, dynamic>? data, bool? isAuth}) async {
-    return await _request(query: query, data: data, isAuth: isAuth, type: _Types.post);
+  Future<Response> post({required String query, Map<String, dynamic>? data, bool? isAuth, String? urlsNane}) async {
+    return await _request(query: query, data: data, isAuth: isAuth, type: _Types.post, urlsNane: urlsNane);
   }
 
-  Future<Response> get({required String query, Map<String, dynamic>? data, bool? isAuth}) async {
-    return await _request(query: query, queries: data, isAuth: isAuth, type: _Types.get);
+  Future<Response> get({required String query, Map<String, dynamic>? data, bool? isAuth, String? urlsNane}) async {
+    return await _request(query: query, queries: data, isAuth: isAuth, type: _Types.get, urlsNane: urlsNane);
   }
 
   Future<dynamic> _request({

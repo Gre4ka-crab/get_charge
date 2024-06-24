@@ -6,7 +6,7 @@ import 'package:get_charge/data/models/User/token_model.dart';
 abstract class LocalTokenDataSources {
   Future<TokenModel> getTokenInLocalStorage();
 
-  Future<void> setTokenInLocalStorage(TokenStorageModel token);
+  Future<void> setTokenInLocalStorage(TokenStorageModel? token);
 }
 
 class LocalTokenDataSourcesImpl implements LocalTokenDataSources {
@@ -25,7 +25,7 @@ class LocalTokenDataSourcesImpl implements LocalTokenDataSources {
   }
 
   @override
-  Future<void> setTokenInLocalStorage(TokenStorageModel token) async {
+  Future<void> setTokenInLocalStorage(TokenStorageModel? token) async {
     await Api.writeLocalStorageToken(token);
   }
 }

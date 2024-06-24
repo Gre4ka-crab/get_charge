@@ -46,11 +46,15 @@ class TokenRepositoryImpl implements TokenRepository {
   }
 
   @override
-  void setToken(TokenEmpty token) {
-    localTokenDataSources.setTokenInLocalStorage(TokenStorageModel(
-      token: token.token,
-      tokenExpireDateTime: token.tokenExpireDateTime,
-      refreshToken: token.refreshToken,
-    ));
+  void setToken(TokenEmpty? token) {
+    var newToken = token != null
+        ? TokenStorageModel(
+            token: token.token,
+            tokenExpireDateTime: token.tokenExpireDateTime,
+            refreshToken: token.refreshToken,
+          )
+        : null;
+
+    localTokenDataSources.setTokenInLocalStorage(newToken);
   }
 }

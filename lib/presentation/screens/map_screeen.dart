@@ -9,6 +9,7 @@ import 'package:get_charge/presentation/widget/main_map.dart';
 import 'package:get_charge/presentation/widget/buttonBar/SelectedPowerBank.dart';
 import 'package:get_charge/presentation/widget/buttons/appBarButton.dart';
 import 'package:get_charge/presentation/widget/main_menu.dart';
+import 'package:get_charge/presentation/widget/modal/auth.dart';
 import 'package:get_charge/presentation/widget/modal/push_query.dart';
 import '../widget/buttonBar/NoSelectedPowerBank.dart';
 import '../widget/dropLists/FiltersList.dart';
@@ -49,9 +50,10 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   void initState() {
-    Future.delayed(const Duration(milliseconds: 500), () {
-      Helpers.openModal(context, const PushQuery());
-    });
+    // TODO Разрешение на пуши
+    // Future.delayed(const Duration(milliseconds: 500), () {
+    //   Helpers.openModal(context, const PushQuery());
+    // });
     super.initState();
   }
 
@@ -84,7 +86,13 @@ class _MapScreenState extends State<MapScreen> {
                       children: [
                         AppBarButton(
                             icon: const Icon(Icons.menu, color: Color.fromARGB(255, 0, 158, 240)),
-                            onPressed: () => _scaffoldKey.currentState?.openDrawer()),
+                            onPressed: () {
+                              if(state is AuthLoaded ? state.isLogIn : false){
+                                _scaffoldKey.currentState?.openDrawer();
+                              }else{
+                                Helpers.openModal(context, const Auth());
+                              }
+                            }),
                         AppBarButton(
                             icon: SvgPicture.asset('images/settings.svg'),
                             onPressed: () {

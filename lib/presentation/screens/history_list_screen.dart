@@ -30,6 +30,10 @@ class HistoryListScreen extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 30, left: 30, right: 30),
         child: BlocBuilder<OrdersHistoryCubit, OrdersHistoryState>(
           builder: (BuildContext context, state) {
+            if (state is OrdersHistoryInitial) {
+              context.read<OrdersHistoryCubit>().getData();
+            }
+
             if (state is OrdersHistoryLoaded) {
               if(state.orders.isEmpty){
                 return const Center(child: Text('Нет записей'));

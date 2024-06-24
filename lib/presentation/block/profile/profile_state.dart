@@ -6,6 +6,7 @@ class ProfileInitial extends ProfileState {}
 
 class ProfileLoading extends ProfileState {}
 
+
 class ProfileLoaded extends ProfileState {
   final ProfileEntity profileEntity;
 
@@ -17,3 +18,5 @@ class ProfileError extends ProfileState {
 
   ProfileError({required this.error});
 }
+
+class ProfileExit extends ProfileState {}

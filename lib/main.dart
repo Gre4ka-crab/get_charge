@@ -26,14 +26,14 @@ import 'package:get_charge/presentation/widget/modal/get_bonus.dart';
 import 'package:get_charge/presentation/screens/map_screeen.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'injection_container.dart' as di;
-import 'injection_container.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await [Permission.location].request();
 
-  await Api.init(urls: {'identity': 'https://ampi-identity.joytech.store/', 'powerbank': 'https://ampi-powerbank.joytech.store/'});
+  await Api.init(
+      urls: {'identity': 'https://ampi-identity.joytech.store/', 'powerBank': 'https://ampi-powerbank.joytech.store/'});
 
   await ScreenUtil.ensureScreenSize();
 
@@ -49,7 +49,12 @@ void main() async {
                 create: (_) => AuthCubit(getToken: sl<GetToken>(), refreshToken: sl<RefreshToken>()),
               ),
               BlocProvider<ProfileCubit>(
-                create: (_) => ProfileCubit(getProfile: sl<GetProfile>()),
+                create: (_) => ProfileCubit(
+                  getProfileUseCase: sl<GetProfile>(),
+                  logOutUseCase: sl<LogOut>(),
+                  changeEmailUseCase: sl<ChangeEmail>(),
+                  removeAccountUseCase: sl<RemoveAccount>(),
+                ),
               ),
               BlocProvider<OrdersHistoryCubit>(
                 create: (_) => OrdersHistoryCubit(getOrders: sl<GetOrders>()),

@@ -12,15 +12,13 @@ class RemoteProfileDataSourcesImpl implements RemoteProfileDataSources{
   final Api api = Api();
   
   @override
-  Future<void> changeProfile(String email) {
-    // TODO: implement changeProfile
-    throw UnimplementedError();
+  Future<void> changeProfile(String email) async {
+    await api.post(query: 'profile/ChangeEmail', data: {'email': email});
   }
 
   @override
-  Future<void> deleteProfile() {
-    // TODO: implement deleteProfile
-    throw UnimplementedError();
+  Future<void> deleteProfile() async {
+    await api.get(query: 'profile/DeleteProfile');
   }
 
   @override

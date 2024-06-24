@@ -13,18 +13,6 @@ class ProfileRepositoryImpl implements ProfileRepository{
   ProfileRepositoryImpl({required this.profileDataSources, required this.networkInfo});
 
   @override
-  Future<void> changeEmail(String email) {
-    // TODO: implement changeEmail
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> deleteProfile() {
-    // TODO: implement deleteProfile
-    throw UnimplementedError();
-  }
-
-  @override
   Future<Either<Failure, ProfileEntity>> getProfile() async {
     var isConnected = await networkInfo.isConnected;
     if(isConnected){
@@ -38,6 +26,36 @@ class ProfileRepositoryImpl implements ProfileRepository{
       return Left(ConnectionFailure());
     }
 
+  }
+
+  @override
+  Future<Either<Failure, void>> changeEmail(String email) async {
+    var isConnected = await networkInfo.isConnected;
+    if(isConnected){
+      try {
+        await profileDataSources.changeProfile(email);
+        return const Right(null);
+      } on DioError catch (error) {
+        return Left(ServerFailure(error.message.toString()));
+      }
+    } else {
+      return Left(ConnectionFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteProfile() async {
+    var isConnected = await networkInfo.isConnected;
+    if(isConnected){
+      try {
+        await profileDataSources.deleteProfile();
+        return const Right(null);
+      } on DioError catch (error) {
+        return Left(ServerFailure(error.message.toString()));
+      }
+    } else {
+      return Left(ConnectionFailure());
+    }
   }
 
 }

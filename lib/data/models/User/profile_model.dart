@@ -23,8 +23,6 @@ class ProfileModel extends ProfileEntity {
     'email': email,
   };
 
-  List<Object> get props => [id];
-
   @override
   String toString() {
     return 'ProfileModal{${toJson()}';

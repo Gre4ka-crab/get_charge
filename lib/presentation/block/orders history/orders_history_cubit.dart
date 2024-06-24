@@ -9,9 +9,7 @@ part 'orders_history_state.dart';
 class OrdersHistoryCubit extends Cubit<OrdersHistoryState> {
   final GetOrders getOrders;
 
-  OrdersHistoryCubit({required this.getOrders}) : super(OrdersHistoryInitial()){
-    getData();
-  }
+  OrdersHistoryCubit({required this.getOrders}) : super(OrdersHistoryInitial());
 
 
    getData() async{

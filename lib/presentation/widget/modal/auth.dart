@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_charge/presentation/widget/buttons/GradientButton.dart';
 import 'package:get_charge/presentation/widget/buttons/LineButton.dart';
@@ -17,7 +18,7 @@ class Auth extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              margin: const EdgeInsets.only(top: 20, bottom: 16),
+              margin: EdgeInsets.only(top: 20.h, bottom: 16.h),
               width: 55,
               height: 6,
               decoration: const BoxDecoration(
@@ -35,31 +36,32 @@ class Auth extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SilverButton(
-                callback: () {},
-                buttonLabel: 'Telegram',
-                svgPicture: SvgPicture.asset('images/silverTelegram.svg'),
-                padding: const EdgeInsets.only(left: 30, right: 30, top: 26),
-              ),
-              const Padding(padding: EdgeInsets.only(top: 10)),
+              // SilverButton(
+              //   callback: () {},
+              //   buttonLabel: 'Telegram',
+              //   svgPicture: SvgPicture.asset('images/silverTelegram.svg'),
+              //   padding: const EdgeInsets.only(left: 30, right: 30, top: 26),
+              // ),
+              Padding(padding: EdgeInsets.only(top: 10.h)),
               GradientButton(
                 callback: () => Navigator.pushNamed(context, '/auth/number'),
                 buttonLabel: 'Звонок',
                 svgPicture: SvgPicture.asset('images/phone.svg'),
-                padding: const EdgeInsets.only(left: 30, right: 30),
+                padding: EdgeInsets.only(left: 30.w, right: 30.w),
               ),
-              const Padding(padding: EdgeInsets.only(top: 10)),
+              Padding(padding: EdgeInsets.only(top: 10.h)),
               LineButton(
                   callback: () {},
                   buttonLabel: 'Поддержка',
-                  padding: const EdgeInsets.only(left: 30, right: 30))
+                  padding: EdgeInsets.only(left: 30.w, right: 30.w))
             ],
           ),
         ),
         Padding(
           padding:
-              const EdgeInsets.only(left: 84, right: 84, bottom: 42, top: 26),
+              EdgeInsets.only(left: 81.w, right: 84, bottom: 20, top: 26),
           child: RichText(
+            textAlign: TextAlign.center,
               text: TextSpan(
                   style: const TextStyle(
                       color: Color.fromARGB(255, 134, 135, 137), fontSize: 10),
